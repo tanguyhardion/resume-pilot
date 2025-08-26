@@ -1,4 +1,4 @@
-declare interface ResumeRequest {
+export interface ResumeRequest {
   jobOffer: string;
   masterPassword: string;
   personalInfo?: PersonalInfo;

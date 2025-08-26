@@ -15,7 +15,8 @@
       <!-- Header -->
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold mb-4">Resume Pilot</h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300">
+        <p class="text-lg text-gray-600 dark:text-gray-300 flex items-center justify-center gap-2">
+          <UIcon name="i-heroicons-bolt" class="text-primary h-6 w-6" />
           AI-powered resume and cover letter generator
         </p>
       </div>
@@ -46,7 +47,7 @@
             :disabled="!canGenerate"
             :loading="isLoading"
             color="primary"
-            size="lg"
+            size="xl"
             icon="i-heroicons-sparkles"
             class="flex justify-center"
             @click="handleGenerate"

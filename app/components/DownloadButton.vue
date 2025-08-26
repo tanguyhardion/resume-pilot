@@ -8,11 +8,15 @@
     class="download-button"
     @click="handleDownload"
   >
-    Download {{ 
-      documentType === 'resume' ? 'Resume' : 
-      documentType === 'coverLetter' ? 'Cover Letter' : 
-      documentType === 'both' ? 'Cover Letter' : 
-      'Document' 
+    Download
+    {{
+      documentType === "resume"
+        ? "Resume"
+        : documentType === "coverLetter"
+        ? "Cover Letter"
+        : documentType === "both"
+        ? "Cover Letter"
+        : "Document"
     }}
   </UButton>
 </template>
@@ -21,11 +25,11 @@
 interface Props {
   pdfBlob: Blob | null;
   isLoading: boolean;
-  documentType: 'resume' | 'coverLetter' | 'both' | null;
+  documentType: "resume" | "coverLetter" | "both" | null;
 }
 
 interface Emits {
-  (e: 'download'): void;
+  (e: "download"): void;
 }
 
 const props = defineProps<Props>();
@@ -33,7 +37,7 @@ const emit = defineEmits<Emits>();
 
 const handleDownload = () => {
   if (props.pdfBlob) {
-    emit('download');
+    emit("download");
   }
 };
 </script>

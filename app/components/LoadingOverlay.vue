@@ -1,8 +1,11 @@
 <template>
-  <div class="loading-overlay" :class="{ 'active': show }">
+  <div class="loading-overlay" :class="{ active: show }">
     <div class="loading-content">
       <div class="loading-spinner-container">
-        <UIcon name="i-heroicons-arrow-path" class="w-12 h-12 animate-spin text-primary" />
+        <UIcon
+          name="i-heroicons-arrow-path"
+          class="w-12 h-12 animate-spin text-primary"
+        />
       </div>
       <div class="loading-text">
         <h3 class="text-lg font-semibold">{{ title }}</h3>
@@ -20,8 +23,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: 'Processing...',
-  message: 'Please wait while we process your request.'
+  title: "Processing...",
+  message: "Please wait while we process your request.",
 });
 </script>
 

@@ -1,4 +1,4 @@
-declare interface CoverLetterRequest {
+export interface CoverLetterRequest {
   jobOffer: string;
   masterPassword: string;
   personalInfo?: PersonalInfo;

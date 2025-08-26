@@ -3,7 +3,10 @@
     <UCard class="mb-6 h-full flex flex-col">
       <template #header>
         <div class="flex items-center gap-2">
-          <UIcon name="i-heroicons-document-text" class="text-primary text-2xl" />
+          <UIcon
+            name="i-heroicons-document-text"
+            class="text-primary text-2xl"
+          />
           <h3 class="text-lg font-semibold">Job Offer Input</h3>
         </div>
       </template>
@@ -18,16 +21,22 @@
           <UTextarea
             v-model="jobOfferText"
             placeholder="Paste the job offer description here..."
-            :rows="8"
+            :rows="4"
+            :maxrows="10"
             class="job-offer-input flex-1"
             :disabled="disabled"
             autoresize
           />
         </UFormField>
 
-        <!-- Character Count -->
+        <!-- Character & Word Count -->
         <div class="text-sm text-gray-500 text-right">
-          {{ jobOfferText.length }} characters
+          {{ jobOfferText.length }}
+          characters,
+          {{
+            jobOfferText.split(/\s+/).filter((word) => word.length > 0).length
+          }}
+          words
         </div>
       </div>
     </UCard>
