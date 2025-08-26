@@ -2,3 +2,47 @@
 @import "@nuxt/ui";
 
 @import "@/assets/scss/main.scss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --breakpoint-3xl: 1920px;
+  --color-primary-50: #e6f0fa;
+  --color-primary-100: #c4e1f5;
+  --color-primary-200: #9ccff0;
+  --color-primary-300: #74bcea;
+  --color-primary-400: #56b0e6;
+  --color-primary-500: #3ba3e0;
+  --color-primary-600: #2f8ccb;
+  --color-primary-700: #2474b3;
+  --color-primary-800: #1b5c9b;
+  --color-primary-900: #13477f;
+  --color-primary-950: #0d3160;
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2a44;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #0a1120;
+  --color-secondary: #ffe066;
+}
+
+:root {
+  --ui-primary: var(--color-primary-500);
+  --ui-bg: var(--color-neutral-50);
+  --ui-text: var(--color-neutral-900);
+  --ui-border: var(--color-neutral-300);
+  --ui-radius: 1rem;
+}
+
+.dark {
+  --ui-primary: var(--color-primary-300);
+  --ui-bg: var(--color-neutral-900);
+  --ui-text: var(--color-neutral-100);
+  --ui-border: var(--color-neutral-700);
+  --ui-radius: 1rem;
+}

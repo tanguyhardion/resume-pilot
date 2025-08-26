@@ -10,27 +10,19 @@
 
       <div class="space-y-4">
         <!-- Text Area Input -->
-        <UFormField label="Paste Job Offer" description="Paste the job offer text here">
+        <UFormField
+          label="Paste Job Offer"
+          description="Paste the job offer text below "
+        >
           <UTextarea
             v-model="jobOfferText"
             placeholder="Paste the job offer description here..."
             :rows="12"
             class="job-offer-input"
             :disabled="disabled"
+            autoresize
           />
         </UFormField>
-
-        <!-- File Upload Option -->
-        <div class="border-t pt-4">
-          <UFormField label="Or Upload File" description="Upload a text file containing the job offer">
-            <UInput
-              type="file"
-              accept=".txt,.doc,.docx,.pdf"
-              @change="handleFileUpload"
-              :disabled="disabled"
-            />
-          </UFormField>
-        </div>
 
         <!-- Character Count -->
         <div class="text-sm text-gray-500 text-right">
@@ -48,34 +40,24 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: string): void;
+  (e: "update:modelValue", value: string): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  disabled: false
+  disabled: false,
 });
 
 const emit = defineEmits<Emits>();
 
 const jobOfferText = computed({
   get: () => props.modelValue,
-  set: (value: string) => emit('update:modelValue', value)
+  set: (value: string) => emit("update:modelValue", value),
 });
-
-const handleFileUpload = async (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  const file = target.files?.[0];
-  
-  if (!file) return;
-
-  try {
-    const text = await file.text();
-    jobOfferText.value = text;
-  } catch (error) {
-    console.error('Error reading file:', error);
-    // You could emit an error event here if needed
-  }
-};
 </script>
 
-
+<style lang="scss" scoped>
+.job-offer-input {
+  width: 100%;
+  margin: 16px 0;
+}
+</style>

@@ -97,7 +97,7 @@
               <UButton
                 :disabled="!coverLetterBlob || isLoading"
                 :loading="isLoading"
-                color="warning"
+                color="primary"
                 size="lg"
                 icon="i-heroicons-arrow-down-tray"
                 class="flex-1"

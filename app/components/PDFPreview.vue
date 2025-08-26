@@ -7,7 +7,7 @@
             <UIcon name="i-heroicons-document" class="text-primary" />
             <h3 class="text-lg font-semibold">Preview</h3>
           </div>
-          <UBadge v-if="documentType" :color="documentType === 'resume' ? 'primary' : documentType === 'both' ? 'success' : 'warning'">
+          <UBadge v-if="documentType" :color="documentType === 'resume' ? 'success' : documentType === 'both' ? 'secondary' : 'warning'">
             {{ 
               documentType === 'resume' ? 'Resume' : 
               documentType === 'coverLetter' ? 'Cover Letter' : 

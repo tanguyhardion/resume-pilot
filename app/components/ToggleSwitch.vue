@@ -18,7 +18,7 @@
             <USwitch
               v-model="coverLetterEnabled"
               :disabled="disabled"
-              color="warning"
+              color="secondary"
             />
           </UFormField>
         </div>
@@ -27,7 +27,7 @@
         <div class="flex items-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
           <UIcon 
             :name="coverLetterEnabled ? 'i-heroicons-document-duplicate' : 'i-heroicons-document'" 
-            :class="coverLetterEnabled ? 'text-warning' : 'text-primary'"
+            :class="coverLetterEnabled ? 'text-secondary' : 'text-primary'"
           />
           <span class="text-sm font-medium">
             {{ coverLetterEnabled ? 'Resume + Cover Letter' : 'Resume Only' }}
