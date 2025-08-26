@@ -3,13 +3,3 @@
     <slot />
   </div>
 </template>
-
-<script setup>
-// Enable color mode for dark theme
-const colorMode = useColorMode()
-
-// Set default to dark
-if (import.meta.client && !colorMode.value) {
-  colorMode.preference = 'dark'
-}
-</script>

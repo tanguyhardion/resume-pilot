@@ -1,24 +1,25 @@
 <template>
-  <div class="job-offer-input-container">
-    <UCard class="mb-6">
+  <div class="job-offer-input-container h-full">
+    <UCard class="mb-6 h-full flex flex-col">
       <template #header>
         <div class="flex items-center gap-2">
-          <UIcon name="i-heroicons-document-text" class="text-primary" />
+          <UIcon name="i-heroicons-document-text" class="text-primary text-2xl" />
           <h3 class="text-lg font-semibold">Job Offer Input</h3>
         </div>
       </template>
 
-      <div class="space-y-4">
+      <div class="space-y-4 flex-1 flex flex-col">
         <!-- Text Area Input -->
         <UFormField
           label="Paste Job Offer"
           description="Paste the job offer text below "
+          class="flex-1 flex flex-col"
         >
           <UTextarea
             v-model="jobOfferText"
             placeholder="Paste the job offer description here..."
-            :rows="12"
-            class="job-offer-input"
+            :rows="8"
+            class="job-offer-input flex-1"
             :disabled="disabled"
             autoresize
           />

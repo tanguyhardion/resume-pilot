@@ -4,7 +4,7 @@
       <template #header>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-document" class="text-primary" />
+            <UIcon name="i-heroicons-document-magnifying-glass" class="text-primary text-2xl" />
             <h3 class="text-lg font-semibold">Preview</h3>
           </div>
           <UBadge v-if="documentType" :color="documentType === 'resume' ? 'success' : documentType === 'both' ? 'secondary' : 'warning'">

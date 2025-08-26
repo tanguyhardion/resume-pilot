@@ -1,18 +1,18 @@
 <template>
-  <div class="toggle-switch-container">
-    <UCard class="mb-6">
+  <div class="toggle-switch-container h-full">
+    <UCard class="mb-6 h-full flex flex-col">
       <template #header>
         <div class="flex items-center gap-2">
-          <UIcon name="i-heroicons-cog-6-tooth" class="text-primary" />
+          <UIcon name="i-heroicons-cog-6-tooth" class="text-primary text-2xl" />
           <h3 class="text-lg font-semibold">Document Options</h3>
         </div>
       </template>
 
-      <div class="space-y-4">
+      <div class="space-y-4 flex-1 flex flex-col justify-between">
         <!-- Cover Letter Toggle -->
         <div class="space-y-2">
           <UFormField 
-            label="Also Generate Cover Letter" 
+            label="Generate Cover Letter" 
             description="Toggle to generate both a resume and a cover letter"
           >
             <USwitch
@@ -47,6 +47,7 @@
               placeholder="Enter master password"
               :disabled="disabled"
               icon="i-heroicons-key"
+              :ui="{ base: 'px-4 py-3' }"
             />
           </UFormField>
         </div>
