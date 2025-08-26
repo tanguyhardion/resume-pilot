@@ -1,0 +1,51 @@
+:root {
+  --color-primary: #2563eb; /* Blue - for buttons, links, highlights */
+  --color-accent: #fbbf24; /* Amber/Yellow - for toggles, callouts, small accents */
+}
+
+.dark {
+  --color-primary: #3b82f6; /* Lighter blue for dark mode */
+  --color-accent: #f59e0b; /* Slightly darker amber for dark mode */
+}
+
+/* Custom component styles */
+.resume-pilot-container {
+  min-height: 100vh;
+  background: var(--ui-bg);
+}
+
+.job-offer-input {
+  min-height: 300px;
+}
+
+.pdf-preview-container {
+  border: 1px solid var(--ui-border);
+  border-radius: 0.5rem;
+  background: var(--ui-bg-elevated);
+}
+
+.download-button {
+  background: var(--color-primary);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.download-button:hover {
+  background: var(--color-primary);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.toggle-switch.active {
+  background: var(--color-accent);
+}
+
+.error-message {
+  color: var(--ui-error);
+  border: 1px solid var(--ui-error);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.loading-spinner {
+  color: var(--color-primary);
+}
