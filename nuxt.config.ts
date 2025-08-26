@@ -7,6 +7,9 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     baseURL: "/resume-pilot/",
+    head: {
+      link: [{ rel: "icon", href: "/resume-pilot/favicon.ico" }],
+    },
   },
   nitro: {
     prerender: {
@@ -15,5 +18,5 @@ export default defineNuxtConfig({
   },
   colorMode: {
     preference: "dark",
-  }
+  },
 });
