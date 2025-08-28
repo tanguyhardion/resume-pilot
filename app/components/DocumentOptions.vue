@@ -93,12 +93,27 @@ onMounted(() => {
     if (storedPassword && !props.masterPassword) {
       emit("update:masterPassword", storedPassword);
     }
+    
+    // Load cover letter toggle state from localStorage
+    const storedToggleState = localStorage.getItem("coverLetterEnabled");
+    if (storedToggleState !== null) {
+      const toggleValue = JSON.parse(storedToggleState);
+      if (toggleValue !== props.modelValue) {
+        emit("update:modelValue", toggleValue);
+      }
+    }
   }
 });
 
 const coverLetterEnabled = computed({
   get: () => props.modelValue,
-  set: (value: boolean) => emit("update:modelValue", value),
+  set: (value: boolean) => {
+    // Save to localStorage
+    if (import.meta.client) {
+      localStorage.setItem("coverLetterEnabled", JSON.stringify(value));
+    }
+    emit("update:modelValue", value);
+  },
 });
 
 const masterPasswordValue = computed({

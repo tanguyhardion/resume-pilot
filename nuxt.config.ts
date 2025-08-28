@@ -16,7 +16,4 @@ export default defineNuxtConfig({
       routes: ["/"],
     },
   },
-  colorMode: {
-    preference: "dark",
-  },
 });

@@ -1,75 +1,42 @@
-# Nuxt Minimal Starter
+# 🚀 Resume Pilot
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+An AI-powered Nuxt 3 application for generating resumes and cover letters.
 
-## Setup
+## 🛠️ Tech Stack
 
-Make sure to install dependencies:
+- **Nuxt 3** - Vue.js framework ⚡
+- **@nuxt/ui** - UI component library 🎨
+- **Sass** - CSS preprocessor 💅
+- **TypeScript** - Type-safe JavaScript 🔒
+
+## ✨ Features
+
+- 🤖 AI-powered resume generation interface
+- ✍️ Intelligent cover letter creation
+- 👀 PDF preview with real-time updates
+- 📱 Responsive design for all devices
+
+## 🚀 Development
 
 ```bash
-# npm
+# Install dependencies
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# Start development server
 npm run dev
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
+# Build for production
 npm run build
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
+# Preview production build
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 📁 Project Structure
+
+- `app/` - Main application files 🏠
+- `components/` - Vue components 🧩
+- `composables/` - Vue composables 🔧
+- `pages/` - Application pages 📄
+- `layouts/` - Page layouts 🎨
+- `utils/` - Utility functions 🛠️
