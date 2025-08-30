@@ -4,9 +4,9 @@ export const useResumePilot = () => {
   const toast = useToast();
   
   const isLoading = ref(false);
-  const pdfBlob = ref<Blob | null>(null);
-  const resumeBlob = ref<Blob | null>(null);
-  const coverLetterBlob = ref<Blob | null>(null);
+  const zipBlob = ref<Blob | null>(null); // Now stores ZIP file instead of PDF
+  const resumeZipBlob = ref<Blob | null>(null);
+  const coverLetterZipBlob = ref<Blob | null>(null);
   const lastGeneratedType = ref<'resume' | 'coverLetter' | 'both' | null>(null);
 
   // Backend configuration
@@ -14,19 +14,19 @@ export const useResumePilot = () => {
 
   const generateResume = async (jobOffer: string, masterPassword?: string, personalInfo?: PersonalInfo) => {
     isLoading.value = true;
-    pdfBlob.value = null;
+    zipBlob.value = null;
 
     try {
       resumeApiService.setBackendUrl(backendUrl.value);
       const blob = await resumeApiService.generateResume(jobOffer, masterPassword, personalInfo);
       
-      pdfBlob.value = blob;
-      resumeBlob.value = blob;
+      zipBlob.value = blob;
+      resumeZipBlob.value = blob;
       lastGeneratedType.value = 'resume';
 
       toast.add({
         title: 'Resume Generated Successfully',
-        description: 'Your resume has been generated and is ready for download.',
+        description: 'Your resume has been generated and is ready for download (includes PDF and TeX files).',
         color: 'success'
       });
 
@@ -46,19 +46,19 @@ export const useResumePilot = () => {
 
   const generateCoverLetter = async (jobOffer: string, masterPassword?: string, personalInfo?: PersonalInfo) => {
     isLoading.value = true;
-    pdfBlob.value = null;
+    zipBlob.value = null;
 
     try {
       resumeApiService.setBackendUrl(backendUrl.value);
       const blob = await resumeApiService.generateCoverLetter(jobOffer, masterPassword, personalInfo);
       
-      pdfBlob.value = blob;
-      coverLetterBlob.value = blob;
+      zipBlob.value = blob;
+      coverLetterZipBlob.value = blob;
       lastGeneratedType.value = 'coverLetter';
 
       toast.add({
         title: 'Cover Letter Generated Successfully',
-        description: 'Your cover letter has been generated and is ready for download.',
+        description: 'Your cover letter has been generated and is ready for download (includes PDF and TeX files).',
         color: 'success'
       });
 
@@ -78,23 +78,23 @@ export const useResumePilot = () => {
 
   const generateBoth = async (jobOffer: string, masterPassword?: string, personalInfo?: PersonalInfo) => {
     isLoading.value = true;
-    pdfBlob.value = null;
-    resumeBlob.value = null;
-    coverLetterBlob.value = null;
+    zipBlob.value = null;
+    resumeZipBlob.value = null;
+    coverLetterZipBlob.value = null;
 
     try {
       resumeApiService.setBackendUrl(backendUrl.value);
       const { resume, coverLetter } = await resumeApiService.generateBoth(jobOffer, masterPassword, personalInfo);
 
-      resumeBlob.value = resume;
-      coverLetterBlob.value = coverLetter;
+      resumeZipBlob.value = resume;
+      coverLetterZipBlob.value = coverLetter;
       // Show cover letter by default when both are generated
-      pdfBlob.value = coverLetter;
+      zipBlob.value = coverLetter;
       lastGeneratedType.value = 'both';
 
       toast.add({
         title: 'Documents Generated Successfully',
-        description: 'Your resume and cover letter have been generated and are ready for download.',
+        description: 'Your resume and cover letter have been generated and are ready for download (each includes PDF and TeX files).',
         color: 'success'
       });
 
@@ -112,39 +112,39 @@ export const useResumePilot = () => {
     }
   };
 
-  const downloadPdf = () => {
-    if (!pdfBlob.value) return;
+  const downloadZip = () => {
+    if (!zipBlob.value) return;
 
-    const url = URL.createObjectURL(pdfBlob.value);
+    const url = URL.createObjectURL(zipBlob.value);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${lastGeneratedType.value || 'document'}_${Date.now()}.pdf`;
+    a.download = `${lastGeneratedType.value || 'document'}_${Date.now()}.zip`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
     toast.add({
-      title: 'Document Downloaded',
-      description: `Your ${lastGeneratedType.value || 'document'} has been downloaded successfully.`,
+      title: 'Archive Downloaded',
+      description: `Your ${lastGeneratedType.value || 'document'} archive (containing PDF and TeX files) has been downloaded successfully.`,
       color: 'success'
     });
   };
 
   const reset = () => {
     isLoading.value = false;
-    pdfBlob.value = null;
-    resumeBlob.value = null;
-    coverLetterBlob.value = null;
+    zipBlob.value = null;
+    resumeZipBlob.value = null;
+    coverLetterZipBlob.value = null;
     lastGeneratedType.value = null;
   };
 
   return {
     // State
     isLoading: readonly(isLoading),
-    pdfBlob: readonly(pdfBlob),
-    resumeBlob: readonly(resumeBlob),
-    coverLetterBlob: readonly(coverLetterBlob),
+    zipBlob: readonly(zipBlob),
+    resumeZipBlob: readonly(resumeZipBlob),
+    coverLetterZipBlob: readonly(coverLetterZipBlob),
     lastGeneratedType: readonly(lastGeneratedType),
     
     // Configuration
@@ -154,7 +154,7 @@ export const useResumePilot = () => {
     generateResume,
     generateCoverLetter,
     generateBoth,
-    downloadPdf,
+    downloadZip,
     reset
   };
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="pdf-preview-container">
+  <div class="file-preview-container">
     <UCard>
       <template #header>
         <div class="flex items-center justify-between">
@@ -22,20 +22,20 @@
           >
             {{
               documentType === "resume"
-                ? "Resume"
+                ? "Resume Archive"
                 : documentType === "coverLetter"
-                ? "Cover Letter"
+                ? "Cover Letter Archive"
                 : documentType === "both"
-                ? "Resume + Cover Letter"
-                : "Document"
+                ? "Resume + Cover Letter Archives"
+                : "Document Archive"
             }}
           </UBadge>
         </div>
       </template>
 
-      <div class="pdf-preview-content">
-        <!-- PDF Preview -->
-        <div v-if="pdfBlob" class="space-y-4">
+      <div class="file-preview-content">
+        <!-- ZIP Archive Preview -->
+        <div v-if="zipBlob" class="space-y-4">
           <div
             class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 min-h-[500px] flex items-center justify-center"
           >
@@ -45,22 +45,26 @@
                 class="w-16 h-16 text-primary mx-auto"
               />
               <div>
-                <p class="text-lg font-medium">PDF Generated Successfully</p>
+                <p class="text-lg font-medium">Archive Generated Successfully</p>
                 <p class="text-sm text-gray-500">
                   {{
                     documentType === "resume"
-                      ? "Resume"
+                      ? "Resume archive (PDF + TeX)"
                       : documentType === "coverLetter"
-                      ? "Cover Letter"
+                      ? "Cover letter archive (PDF + TeX)"
                       : documentType === "both"
-                      ? "Documents are"
-                      : "Document is"
+                      ? "Document archives (PDF + TeX files)"
+                      : "Document archive"
                   }}
                   ready for download
                 </p>
               </div>
               <div class="text-xs text-gray-400">
-                Size: {{ formatFileSize(pdfBlob.size) }}
+                Size: {{ formatFileSize(zipBlob?.size || 0) }}
+              </div>
+              <div class="text-xs text-gray-400 mt-2">
+                <UIcon name="i-heroicons-archive-box" class="w-4 h-4 inline mr-1" />
+                Contains PDF and TeX source files
               </div>
             </div>
           </div>
@@ -78,10 +82,10 @@
             />
             <div>
               <p class="text-lg font-medium text-gray-600 dark:text-gray-300">
-                No Document Generated
+                No Archive Generated
               </p>
               <p class="text-sm text-gray-500">
-                Enter a job offer and click generate to see your document here
+                Enter a job offer and click generate to see your document archive here
               </p>
             </div>
           </div>
@@ -101,10 +105,10 @@
             </div>
             <div>
               <p class="text-lg font-medium">
-                Generating {{ documentType || "Document" }}...
+                Generating {{ documentType || "Document" }} Archive...
               </p>
               <p class="text-sm text-gray-500">
-                Please wait while we create your personalized document
+                Please wait while we create your personalized documents (PDF + TeX)
               </p>
             </div>
           </div>
@@ -116,7 +120,7 @@
 
 <script setup lang="ts">
 interface Props {
-  pdfBlob: Blob | null;
+  zipBlob: Blob | null;
   isLoading: boolean;
   documentType: "resume" | "coverLetter" | "both" | null;
 }

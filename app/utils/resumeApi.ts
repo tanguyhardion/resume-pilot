@@ -35,6 +35,7 @@ export class ResumeApiService {
       );
     }
 
+    // The response is now a ZIP file containing both PDF and TeX
     return await response.blob();
   }
 
@@ -64,6 +65,7 @@ export class ResumeApiService {
       );
     }
 
+    // The response is now a ZIP file containing both PDF and TeX
     return await response.blob();
   }
 

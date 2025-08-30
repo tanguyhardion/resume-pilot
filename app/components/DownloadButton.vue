@@ -1,6 +1,6 @@
 <template>
   <UButton
-    :disabled="!pdfBlob || isLoading"
+    :disabled="!zipBlob || isLoading"
     :loading="isLoading"
     color="primary"
     size="lg"
@@ -11,19 +11,19 @@
     Download
     {{
       documentType === "resume"
-        ? "Resume"
+        ? "Resume Archive"
         : documentType === "coverLetter"
-        ? "Cover Letter"
+        ? "Cover Letter Archive"
         : documentType === "both"
-        ? "Cover Letter"
-        : "Document"
+        ? "Cover Letter Archive"
+        : "Document Archive"
     }}
   </UButton>
 </template>
 
 <script setup lang="ts">
 interface Props {
-  pdfBlob: Blob | null;
+  zipBlob: Blob | null;
   isLoading: boolean;
   documentType: "resume" | "coverLetter" | "both" | null;
 }
@@ -36,7 +36,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const handleDownload = () => {
-  if (props.pdfBlob) {
+  if (props.zipBlob) {
     emit("download");
   }
 };

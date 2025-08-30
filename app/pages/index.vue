@@ -57,7 +57,7 @@
           </UButton>
 
           <UButton
-            v-if="pdfBlob"
+            v-if="zipBlob"
             variant="outline"
             size="lg"
             icon="i-heroicons-arrow-path"
@@ -70,21 +70,21 @@
 
       <!-- Bottom Section: Preview and Download -->
       <div class="space-y-6">
-        <!-- PDF Preview -->
+        <!-- Archive Preview -->
         <PDFPreview
-          :pdf-blob="pdfBlob"
+          :zip-blob="zipBlob"
           :is-loading="isLoading"
           :document-type="lastGeneratedType"
         />
 
         <!-- Download Button(s) -->
-        <div v-if="pdfBlob" class="flex justify-center">
+        <div v-if="zipBlob" class="flex justify-center">
           <div
             v-if="lastGeneratedType === 'both'"
             class="flex flex-col sm:flex-row gap-4 w-full max-w-md"
           >
             <UButton
-              :disabled="!resumeBlob || isLoading"
+              :disabled="!resumeZipBlob || isLoading"
               :loading="isLoading"
               color="primary"
               size="lg"
@@ -92,10 +92,10 @@
               class="flex-1"
               @click="downloadDocument('resume')"
             >
-              Download Resume
+              Download Resume Archive
             </UButton>
             <UButton
-              :disabled="!coverLetterBlob || isLoading"
+              :disabled="!coverLetterZipBlob || isLoading"
               :loading="isLoading"
               color="primary"
               size="lg"
@@ -103,15 +103,15 @@
               class="flex-1"
               @click="downloadDocument('coverLetter')"
             >
-              Download Cover Letter
+              Download Cover Letter Archive
             </UButton>
           </div>
           <DownloadButton
             v-else
-            :pdf-blob="pdfBlob"
+            :zip-blob="zipBlob"
             :is-loading="isLoading"
             :document-type="lastGeneratedType"
-            @download="downloadPdf"
+            @download="downloadZip"
           />
         </div>
       </div>
@@ -132,14 +132,14 @@
 // Use the composable
 const {
   isLoading,
-  pdfBlob,
-  resumeBlob,
-  coverLetterBlob,
+  zipBlob,
+  resumeZipBlob,
+  coverLetterZipBlob,
   lastGeneratedType,
   generateResume,
   generateCoverLetter,
   generateBoth,
-  downloadPdf,
+  downloadZip,
   reset,
 } = useResumePilot();
 
@@ -180,34 +180,34 @@ const handleReset = () => {
 const downloadDocument = (type: "resume" | "coverLetter") => {
   const toast = useToast();
 
-  if (type === "resume" && resumeBlob.value) {
-    const url = URL.createObjectURL(resumeBlob.value);
+  if (type === "resume" && resumeZipBlob.value) {
+    const url = URL.createObjectURL(resumeZipBlob.value);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `resume_${Date.now()}.pdf`;
+    a.download = `resume_${Date.now()}.zip`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
     toast.add({
-      title: "Resume Downloaded",
-      description: "Your resume has been downloaded successfully.",
+      title: "Resume Archive Downloaded",
+      description: "Your resume archive (PDF + TeX) has been downloaded successfully.",
       color: "success",
     });
-  } else if (type === "coverLetter" && coverLetterBlob.value) {
-    const url = URL.createObjectURL(coverLetterBlob.value);
+  } else if (type === "coverLetter" && coverLetterZipBlob.value) {
+    const url = URL.createObjectURL(coverLetterZipBlob.value);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `cover_letter_${Date.now()}.pdf`;
+    a.download = `cover_letter_${Date.now()}.zip`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
     toast.add({
-      title: "Cover Letter Downloaded",
-      description: "Your cover letter has been downloaded successfully.",
+      title: "Cover Letter Archive Downloaded",
+      description: "Your cover letter archive (PDF + TeX) has been downloaded successfully.",
       color: "success",
     });
   }
