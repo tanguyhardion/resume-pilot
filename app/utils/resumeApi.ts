@@ -1,12 +1,15 @@
+// Environment-based backend URL configuration
+const getBackendUrl = (): string => {
+  return process.env.NODE_ENV === "development"
+    ? "http://localhost:3001" // Local backend for development
+    : "https://resume-pilot-backend.vercel.app"; // Production backend
+};
+
 export class ResumeApiService {
-  private backendUrl: string;
+  private readonly backendUrl: string;
 
-  constructor(backendUrl = "http://localhost:3001") {
-    this.backendUrl = backendUrl;
-  }
-
-  setBackendUrl(url: string) {
-    this.backendUrl = url;
+  constructor() {
+    this.backendUrl = getBackendUrl();
   }
 
   async generateResume(

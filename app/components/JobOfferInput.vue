@@ -71,14 +71,14 @@ const jobOfferText = computed({
 onMounted(() => {
   if (import.meta.env.MODE === "development") {
     jobOfferText.value = `Job Title: Machine Learning Engineer - Generative AI
-Company: AetherAI Labs
+Company: Zogwobble Labs
 Location: Luxembourg City, Luxembourg (Hybrid)
 Employment Type: Full-time
 Salary: €70,000-€85,000/year + performance bonus
 Start Date: November 2025
 
 Job Description:
-AetherAI Labs is looking for a Machine Learning Engineer specialized in generative AI to help us build next-gen LLM-powered applications. You'll work on fine-tuning models, optimizing inference pipelines, and deploying scalable AI solutions in production.
+Zogwobble Labs is looking for a Machine Learning Engineer specialized in generative AI to help us build next-gen LLM-powered applications. You'll work on fine-tuning models, optimizing inference pipelines, and deploying scalable AI solutions in production.
 
 Responsibilities:
 
@@ -117,7 +117,7 @@ Opportunity to publish research and attend top AI conferences (NeurIPS, ICLR).
 Startup-like environment with the stability of a scale-up.
 
 How to Apply:
-Apply via our careers page: careers.aetherai.fake
+Apply via our careers page: careers.zogwobble.fake
 `;
   }
 });

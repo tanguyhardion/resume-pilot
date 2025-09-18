@@ -9,15 +9,11 @@ export const useResumePilot = () => {
   const coverLetterZipBlob = ref<Blob | null>(null);
   const lastGeneratedType = ref<'resume' | 'coverLetter' | 'both' | null>(null);
 
-  // Backend configuration
-  const backendUrl = ref('http://localhost:3001');
-
   const generateResume = async (jobOffer: string, masterPassword?: string, personalInfo?: PersonalInfo) => {
     isLoading.value = true;
     zipBlob.value = null;
 
     try {
-      resumeApiService.setBackendUrl(backendUrl.value);
       const blob = await resumeApiService.generateResume(jobOffer, masterPassword, personalInfo);
       
       zipBlob.value = blob;
@@ -49,7 +45,6 @@ export const useResumePilot = () => {
     zipBlob.value = null;
 
     try {
-      resumeApiService.setBackendUrl(backendUrl.value);
       const blob = await resumeApiService.generateCoverLetter(jobOffer, masterPassword, personalInfo);
       
       zipBlob.value = blob;
@@ -83,7 +78,6 @@ export const useResumePilot = () => {
     coverLetterZipBlob.value = null;
 
     try {
-      resumeApiService.setBackendUrl(backendUrl.value);
       const { resume, coverLetter } = await resumeApiService.generateBoth(jobOffer, masterPassword, personalInfo);
 
       resumeZipBlob.value = resume;
@@ -125,8 +119,8 @@ export const useResumePilot = () => {
     URL.revokeObjectURL(url);
     
     toast.add({
-      title: 'Archive Downloaded',
-      description: `Your ${lastGeneratedType.value || 'document'} archive (containing PDF and TeX files) has been downloaded successfully.`,
+      title: 'Documents Downloaded',
+      description: `Your ${lastGeneratedType.value || 'documents'} (containing PDF and TeX files) have been downloaded successfully.`,
       color: 'success'
     });
   };
@@ -146,9 +140,6 @@ export const useResumePilot = () => {
     resumeZipBlob: readonly(resumeZipBlob),
     coverLetterZipBlob: readonly(coverLetterZipBlob),
     lastGeneratedType: readonly(lastGeneratedType),
-    
-    // Configuration
-    backendUrl,
     
     // Actions
     generateResume,

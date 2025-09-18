@@ -11,12 +11,12 @@
     Download
     {{
       documentType === "resume"
-        ? "Resume Archive"
+        ? "Resume"
         : documentType === "coverLetter"
-        ? "Cover Letter Archive"
+        ? "Cover Letter"
         : documentType === "both"
-        ? "Cover Letter Archive"
-        : "Document Archive"
+        ? "Cover Letter"
+        : "Document"
     }}
   </UButton>
 </template>

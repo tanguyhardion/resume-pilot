@@ -70,7 +70,7 @@
 
       <!-- Bottom Section: Preview and Download -->
       <div class="space-y-6">
-        <!-- Archive Preview -->
+        <!-- Preview -->
         <PDFPreview
           :zip-blob="zipBlob"
           :is-loading="isLoading"
@@ -92,7 +92,7 @@
               class="flex-1"
               @click="downloadDocument('resume')"
             >
-              Download Resume Archive
+              Download Resume
             </UButton>
             <UButton
               :disabled="!coverLetterZipBlob || isLoading"
@@ -103,7 +103,7 @@
               class="flex-1"
               @click="downloadDocument('coverLetter')"
             >
-              Download Cover Letter Archive
+              Download Cover Letter
             </UButton>
           </div>
           <DownloadButton
@@ -191,8 +191,8 @@ const downloadDocument = (type: "resume" | "coverLetter") => {
     URL.revokeObjectURL(url);
 
     toast.add({
-      title: "Resume Archive Downloaded",
-      description: "Your resume archive (PDF + TeX) has been downloaded successfully.",
+      title: "Resume Downloaded",
+      description: "Your resume (PDF + TeX) has been downloaded successfully.",
       color: "success",
     });
   } else if (type === "coverLetter" && coverLetterZipBlob.value) {
@@ -206,8 +206,8 @@ const downloadDocument = (type: "resume" | "coverLetter") => {
     URL.revokeObjectURL(url);
 
     toast.add({
-      title: "Cover Letter Archive Downloaded",
-      description: "Your cover letter archive (PDF + TeX) has been downloaded successfully.",
+      title: "Cover Letter Downloaded",
+      description: "Your cover letter (PDF + TeX) has been downloaded successfully.",
       color: "success",
     });
   }
